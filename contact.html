@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact | Khushi</title>
+    <meta name="description" content="Connect securely via our fully accessible and theme-responsive interface.">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <header>
+        <div class="logo">Khushi</div>
+        <nav aria-label="Main Navigation">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="contact.html" aria-current="page">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main id="main-content">
+        <section aria-labelledby="contact-heading">
+            <h1 id="contact-heading" style="text-align: center; margin-bottom: 30px;">Initialize a Connection</h1>
+            
+            <form action="#" method="POST" class="accessible-form">
+                <div class="form-group">
+                    <label for="name">Identity / Full Name</label>
+                    <input type="text" id="name" name="name" required aria-required="true" placeholder="e.g., Khushi">
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Secure Email Routing</label>
+                    <input type="email" id="email" name="email" required aria-required="true" aria-describedby="email-help" placeholder="name@company.com">
+                    <small id="email-help">Your endpoint address is strictly encrypted.</small>
+                </div>
+
+                <div class="form-group">
+                    <label for="message">Transmission Message</label>
+                    <textarea id="message" name="message" rows="5" required placeholder="Describe your project scopes..."></textarea>
+                </div>
+
+                <button type="submit">Deploy Transmission</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Khushi. Built with modern CSS architecture.</p>
+    </footer>
+
+</body>
+</html>

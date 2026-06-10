@@ -1,0 +1,333 @@
+/* ==========================================================================
+   1. MODERN CSS VARIABLES (DYNAMIC THEMES & RESPONSIVE ARCHITECTURE)
+   ========================================================================== */
+:root {
+    /* --- Light Mode Colors (Default) --- */
+    --bg-main: #ffffff;
+    --bg-surface: #f8fafc;
+    --bg-card: #ffffff;
+    --text-main: #0f172a;       /* High contrast Slate 900 */
+    --text-muted: #475569;      /* Slate 600 */
+    --primary: #2563eb;         /* Vibrant Royal Blue */
+    --primary-hover: #1d4ed8;
+    --border: #e2e8f0;
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.1);
+    --shadow-md: 0 10px 15px -3px rgba(0,0,0,0.05), 0 4px 6px -2px rgba(0,0,0,0.05);
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* --- Dark Mode Theme (Automatic via System Preferences or Toggle ready) --- */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg-main: #0f172a;     /* Deep Slate Dark */
+        --bg-surface: #1e293b;
+        --bg-card: #1e293b;
+        --text-main: #f8fafc;
+        --text-muted: #94a3b8;
+        --primary: #3b82f6;     /* Brighter Blue for Dark Mode */
+        --primary-hover: #60a5fa;
+        --border: #334155;
+        --shadow-md: 0 10px 15px -3px rgba(0,0,0,0.3);
+    }
+}
+
+/* ==========================================================================
+   2. GLOBAL RESET & ACCESSIBILITY
+   ========================================================================== */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--bg-main);
+    color: var(--text-main);
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    line-height: 1.7;
+    transition: var(--transition);
+}
+
+/* Skip Link for Accessibility */
+.skip-link {
+    position: absolute;
+    top: -100px;
+    left: 20px;
+    background: var(--primary);
+    color: white;
+    padding: 12px 24px;
+    z-index: 100;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: top 0.2s ease;
+}
+.skip-link:focus { top: 20px; }
+
+/* Focus outlines for Keyboard Nav (WCAG Guideline) */
+*:focus-visible {
+    outline: 3px solid var(--primary);
+    outline-offset: 4px;
+}
+
+/* ==========================================================================
+   3. MOBILE-FIRST NAVIGATION LAYOUT (FLEXBOX)
+   ========================================================================== */
+header {
+    display: flex;
+    flex-direction: column; /* Mobile first: elements stack vertically */
+    gap: 15px;
+    align-items: center;
+    padding: 20px 5%;
+    background-color: var(--bg-main);
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    backdrop-filter: blur(8px); /* Modern glassmorphism effect */
+}
+
+header .logo {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--primary);
+    letter-spacing: -1px;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+nav a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.95rem;
+    padding: 8px 16px;
+    border-radius: 8px;
+    transition: var(--transition);
+}
+
+nav a:hover {
+    color: var(--primary);
+    background: var(--bg-surface);
+}
+
+nav a[aria-current="page"] {
+    background-color: var(--primary);
+    color: white;
+}
+
+/* ==========================================================================
+   4. CORE MAIN LAYOUT ARCHITECTURE
+   ========================================================================== */
+main {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 24px;
+}
+
+/* Hero Section Styling */
+.hero {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 80px 24px;
+    background: linear-gradient(135deg, var(--bg-surface) 0%, var(--bg-main) 100%);
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    box-shadow: var(--shadow-sm);
+}
+
+.hero h1 {
+    font-size: 2.2rem;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    margin-bottom: 20px;
+    line-height: 1.2;
+}
+
+.hero p {
+    color: var(--text-muted);
+    font-size: 1.1rem;
+    max-width: 600px;
+    margin-bottom: 32px;
+}
+
+/* Button Component */
+.btn, button {
+    display: inline-block;
+    background-color: var(--primary);
+    color: white;
+    font-weight: 600;
+    padding: 14px 32px;
+    border-radius: 12px;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 14px rgba(37, 99, 235, 0.2);
+    transition: var(--transition);
+}
+.btn:hover, button:hover {
+    background-color: var(--primary-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(37, 99, 235, 0.3);
+}
+
+/* ==========================================================================
+   5. ADVANCED TWO-DIMENSIONAL CSS GRID (PROJECTS PAGE)
+   ========================================================================== */
+.projects-grid {
+    display: grid;
+    /* Mobile First: 1 Column */
+    grid-template-columns: 1fr; 
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.project-card {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 32px;
+    box-shadow: var(--shadow-md);
+    transition: var(--transition);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.project-card:hover {
+    transform: translateY(-8px);
+    border-color: var(--primary);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+.project-card h2 {
+    font-size: 1.4rem;
+    margin-bottom: 12px;
+    color: var(--text-main);
+}
+
+.project-card p {
+    color: var(--text-muted);
+    font-size: 1rem;
+    margin-bottom: 24px;
+    flex-grow: 1;
+}
+
+.project-card a {
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.95rem;
+    align-self: flex-start;
+}
+.project-card a:hover { text-decoration: underline; }
+
+/* ==========================================================================
+   6. RESPONSIVE ABOUT & FORM COMPONENT
+   ========================================================================== */
+.about-container {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    align-items: center;
+}
+
+.about-image img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 4px solid var(--primary);
+}
+
+/* Forms (Contact Page) */
+.accessible-form {
+    background-color: var(--bg-surface);
+    padding: 32px;
+    border-radius: 20px;
+    border: 1px solid var(--border);
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.form-group { margin-bottom: 24px; }
+label { display: block; font-weight: 600; margin-bottom: 8px; font-size: 0.95rem; }
+input, textarea {
+    width: 100%;
+    padding: 14px;
+    background-color: var(--bg-main);
+    color: var(--text-main);
+    border: 2px solid var(--border);
+    border-radius: 10px;
+    font-size: 1rem;
+    transition: var(--transition);
+}
+input:focus, textarea:focus {
+    border-color: var(--primary);
+    outline: none;
+}
+
+/* Footer (Localized Flexbox) */
+footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    padding: 40px 24px;
+    margin-top: 80px;
+    border-top: 1px solid var(--border);
+    background-color: var(--bg-surface);
+    text-align: center;
+}
+footer ul { display: flex; list-style: none; gap: 20px; }
+footer a { color: var(--primary); text-decoration: none; font-weight: 600; }
+
+/* ==========================================================================
+   7. MEDIA QUERIES (DESKTOP RESPONSIVE BREAKPOINTS)
+   ========================================================================== */
+
+/* Tablet & Smaller Desktop Screens (>= 768px) */
+@media (min-width: 768px) {
+    header {
+        flex-direction: row; /* Horizontal navbar */
+        justify-content: space-between;
+    }
+    
+    .hero h1 { font-size: 3.5rem; } /* Bigger text on desktop */
+    
+    /* Grid transforms to 2 columns */
+    .projects-grid {
+        grid-template-columns: repeat(2, 1fr); 
+    }
+    
+    .about-container {
+        flex-direction: row;
+        align-items: flex-start;
+    }
+    
+    footer {
+        flex-direction: row;
+        justify-content: space-between;
+        max-width: 1200px;
+        margin: 80px auto 0 auto;
+        background: transparent;
+    }
+}
+
+/* Large Desktop Screens (>= 1024px) */
+@media (min-width: 1024px) {
+    /* Complex Grid Architecture for Desktop Projects */
+    .projects-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
